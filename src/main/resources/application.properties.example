@@ -1,0 +1,8 @@
+# Exemplo - Preencha e renomeie o arquivo para application.properties
+
+spring.application.name=iam
+spring.datasource.url=jdbc:postgresql://localhost:5432/iam_db
+spring.datasource.username=SEU_USUARIO
+spring.datasource.password=SUA_SENHA
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update

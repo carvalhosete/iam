@@ -1,0 +1,24 @@
+# Exemplo de configuração - Preencha com suas senhas e renomeie o arquivo para docker-compose.yml
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: postgres15_container
+    restart: always
+    environment:
+      POSTGRES_USER: SEU_USUARIO
+      POSTGRES_PASSWORD: SUA_SENHA
+      POSTGRES_DB: iam_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - postgres-network
+
+volumes:
+  pgdata:
+
+networks:
+  postgres-network:
+    driver: bridge
