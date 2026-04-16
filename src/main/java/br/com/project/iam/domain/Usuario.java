@@ -31,6 +31,9 @@ public class Usuario implements UserDetails {
     @Column(name="senha", nullable = false)
     private String senha;
 
+    private Integer tentativasFalhas = 0;
+    private Boolean ativo = true;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
@@ -63,6 +66,6 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
+        return this.ativo;
     }
 }
