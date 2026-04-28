@@ -1,18 +1,17 @@
 package br.com.project.iam.consumer;
 
-import br.com.project.iam.config.RabbitMQConfig;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import io.awspring.cloud.sqs.annotation.SqsListener;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class NotificacaoBloqueioConsumer {
 
-    @RabbitListener(queues = RabbitMQConfig.FILA_NOTIFICACAO_BLOQUEIO)
+    @SqsListener("fila-notificacao-bloqueio")
     public void receberNotificacao(String emailBloqueado){
 
         System.out.println("========================================");
-        System.out.println("NOVA MENSAGEM RECEBIDA DO RABBITMQ!");
+        System.out.println("NOVA MENSAGEM RECEBIDA NA AMAZON SQS!");
         System.out.println("Usuário bloqueado: " + emailBloqueado);
         System.out.println("Simulando envio de e-mail de recuperação....");
         System.out.println("========================================");

@@ -1,9 +1,8 @@
 package br.com.project.iam.security;
 
-import br.com.project.iam.config.RabbitMQConfig;
 import br.com.project.iam.domain.Usuario;
 import br.com.project.iam.repository.UsuarioRepository;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import io.awspring.cloud.sqs.operations.SqsTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;
@@ -18,7 +17,7 @@ public class FalhaAutenticacaoListener {
     private UsuarioRepository repository;
 
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private SqsTemplate sqsTemplate;
 
 
     @EventListener
@@ -33,7 +32,7 @@ public class FalhaAutenticacaoListener {
             if (usuarioLocalizado.getTentativasFalhas() >= 3){
                 usuarioLocalizado.setAtivo(false);
                 repository.save(usuarioLocalizado);
-                rabbitTemplate.convertAndSend(RabbitMQConfig.FILA_NOTIFICACAO_BLOQUEIO, emailTentado);
+                sqsTemplate.send("fila-notificacao-bloqueio", emailTentado);
 
                 return;
             }
