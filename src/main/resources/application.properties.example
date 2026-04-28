@@ -7,3 +7,7 @@ spring.datasource.password=SUA_SENHA
 spring.jpa.show-sql=true
 spring.jpa.hibernate.ddl-auto=update
 api.security.token.secret=sua_senha_aqui
+spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
