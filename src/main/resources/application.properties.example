@@ -1,12 +1,15 @@
 # Exemplo - Preencha e renomeie o arquivo para application.properties
 
 spring.application.name=iam
-spring.datasource.url=jdbc:postgresql://localhost:5432/iam_db
-spring.datasource.username=SEU_USUARIO
-spring.datasource.password=SUA_SENHA
+
+spring.datasource.url=${DB_URL}
+spring.datasource.username=${DB_USER}
+spring.datasource.password=${DB_PASSWORD}
 spring.jpa.show-sql=true
 spring.jpa.hibernate.ddl-auto=update
-api.security.token.secret=sua_senha_aqui
-spring.cloud.aws.credentials.access-key=SUA_ACCESS_KEY_AQUI
-spring.cloud.aws.credentials.secret-key=SUA_SECRET_KEY_AQUI
-spring.cloud.aws.region.static=sa-east-1
+
+api.security.token.secret=${JWT_SECRET}
+
+spring.cloud.aws.credentials.access-key=${AWS_ACCESS_KEY}
+spring.cloud.aws.credentials.secret-key=${AWS_SECRET_KEY}
+spring.cloud.aws.region.static=${AWS_REGION}
